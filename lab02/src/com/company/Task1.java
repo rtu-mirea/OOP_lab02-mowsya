@@ -35,7 +35,7 @@ public class Task1 {
         System.out.println("Строка из слов, начинающихся и заканчивающихся на гласную: ");
         System.out.println(result);
         temp = null;
-        result = null;
+        result = "";
     }
     public void longerThan(String word){
         int space, count = 0;
@@ -64,12 +64,17 @@ public class Task1 {
         while (true) {
             space = temp.indexOf(" ");
             if (space != -1) {
-                String tempsub = temp.substring(0,space - 1).toLowerCase();
-                if (tempsub.lastIndexOf("пре") == 2) {
-                    tempsub = tempsub.toUpperCase();
+                String tempsub = temp.substring(0, space).toLowerCase();
+                if (tempsub.indexOf("пре") == 0 || tempsub.indexOf("при") == 0) {
+                    result = result.concat(tempsub.toUpperCase() + " ");
+                } else {
+                    result = result.concat(temp.substring(0, space) + " ");
                 }
             } else {
-                if (isVowel(temp.charAt(0)) && isVowel(temp.charAt(temp.length() - 1))) {
+                String tempsub = temp.toLowerCase();
+                if (tempsub.indexOf("пре") == 2 || tempsub.indexOf("при") == 0) {
+                    result = result.concat(tempsub.toUpperCase());
+                } else {
                     result = result.concat(temp);
                 }
                 break;
@@ -81,5 +86,22 @@ public class Task1 {
         temp = null;
         result = null;
     }
-
+    public void numberRange(int min, int max){
+        int count = 0;
+        temp = text;
+        temp = temp.replaceAll("\\D", " ");
+        String[] arr = temp.split(" ");
+        for(String i : arr){
+            if(i.equals("")){
+                continue;
+            }
+            System.out.println(i);
+            if(Integer.parseInt(i) >= min && Integer.parseInt(i) <= max){
+                count++;
+            }
+        }
+        System.out.println("Количество чисел в данном диапазоне: ");
+        System.out.println(count);
+        temp = null;
+    }
 }
