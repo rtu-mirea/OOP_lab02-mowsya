@@ -72,7 +72,7 @@ public class Task1 {
                 }
             } else {
                 String tempsub = temp.toLowerCase();
-                if (tempsub.indexOf("пре") == 2 || tempsub.indexOf("при") == 0) {
+                if (tempsub.indexOf("пре") == 0 || tempsub.indexOf("при") == 0) {
                     result = result.concat(tempsub.toUpperCase());
                 } else {
                     result = result.concat(temp);
@@ -81,7 +81,7 @@ public class Task1 {
             }
             temp = temp.substring(space + 1);
         }
-        System.out.println("Строка из слов, начинающихся и заканчивающихся на гласную: ");
+        System.out.println("Строка со словами на \"пре-\" и \"при-\", записанными прописными буквами: ");
         System.out.println(result);
         temp = null;
         result = null;
