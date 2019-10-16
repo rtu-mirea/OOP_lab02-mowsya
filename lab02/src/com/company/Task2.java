@@ -18,9 +18,7 @@ public class Task2 {
     public void removePrePri(){
         String[] arr = text.toString().split(" ");
         for(String i : arr){
-            if(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0 ){
-                continue;
-            } else{
+            if(!(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0)){
                 temp.append(i).append(" ");
             }
         }

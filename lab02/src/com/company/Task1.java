@@ -25,7 +25,10 @@ public class Task1 {
         System.out.println("Строка из слов, начинающихся и заканчивающихся на гласную: ");
         System.out.println(temp);
     }
-    public void longerThan(String word){
+    public void longerThan(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите слово: ");
+        String word = in.nextLine();
         int count = 0;
         String[] arr = text.split(" ");
         for(String i: arr){
@@ -49,12 +52,19 @@ public class Task1 {
         System.out.println("Строка со словами на \"пре-\" и \"при-\", записанными прописными буквами: ");
         System.out.println(temp);
     }
-    public void numberRange(int min, int max){
+    public void numberRange(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите минимум: ");
+        int min = in.nextInt();
+        System.out.println("Введите максимум: ");
+        int max = in.nextInt();
         int count = 0;
-        String[] arr = text.split("\\s*?\\D*\\s");
+        text = text.replaceAll("\\D"," ");
+        System.out.println(text);
+        String[] arr = text.split(" ");
         for(String i: arr){
             if(!i.equals("")) {
-                if (Integer.parseInt(i) >= min && Integer.parseInt(i) >= max) {
+                if (Integer.parseInt(i) >= min && Integer.parseInt(i) <= max) {
                     count++;
                 }
             }
