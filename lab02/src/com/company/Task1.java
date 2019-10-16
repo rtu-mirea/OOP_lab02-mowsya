@@ -1,11 +1,10 @@
 package com.company;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.String;
 
 public class Task1 {
     String text;
-    String temp;
-    String result = "";
 
     Task1() {
         System.out.println("Введите текст: ");
@@ -16,92 +15,51 @@ public class Task1 {
         return (c == 'а' || c == 'А' || c == 'е' || c == 'Е' || c == 'и' || c == 'И' || c == 'о' || c == 'О' || c == 'у' || c == 'У' || c == 'ы' || c == 'Ы' || c == 'э' || c == 'Э' || c == 'я' || c == 'Я' || c == 'Ю' || c == 'ю' || c == 'ё' || c == 'Ё');
     }
     public void vowelWords() {
-        int space;
-        temp = text;
-        while (true) {
-            space = temp.indexOf(" ");
-            if (space != -1) {
-                if (isVowel(temp.charAt(0)) && isVowel(temp.charAt(space - 1))) {
-                    result = result.concat(temp.substring(0, space + 1));
-                }
-            } else {
-                if (isVowel(temp.charAt(0)) && isVowel(temp.charAt(temp.length() - 1))) {
-                    result = result.concat(temp);
-                }
-                break;
+        String temp = "";
+        String[] arr = text.split(" ");
+        for(String i: arr){
+            if(isVowel(i.charAt(0)) && isVowel(i.charAt(i.length() - 1))){
+                temp = temp.concat(i).concat(" ");
             }
-            temp = temp.substring(space + 1);
         }
         System.out.println("Строка из слов, начинающихся и заканчивающихся на гласную: ");
-        System.out.println(result);
-        temp = null;
-        result = "";
+        System.out.println(temp);
     }
     public void longerThan(String word){
-        int space, count = 0;
-        temp = text;
-        while (true) {
-            space = temp.indexOf(" ");
-            if (space != -1) {
-                if(temp.substring(0,space).length() > word.length()){
-                    count++;
-                }
-            } else {
-                if(temp.substring(temp.length()).length() > word.length()){
-                    count++;
-                }
-                break;
+        int count = 0;
+        String[] arr = text.split(" ");
+        for(String i: arr){
+            if(i.length() > word.length()){
+                count++;
             }
-            temp = temp.substring(space + 1);
         }
-        System.out.println("Количество слов длиннее " + word + ": ");
+        System.out.println("Количество слов длиннее \"" + word + "\": ");
         System.out.println(count);
-        temp = null;
     }
     public void upperPrePri(){
-        int space;
-        temp = text;
-        while (true) {
-            space = temp.indexOf(" ");
-            if (space != -1) {
-                String tempsub = temp.substring(0, space).toLowerCase();
-                if (tempsub.indexOf("пре") == 0 || tempsub.indexOf("при") == 0) {
-                    result = result.concat(tempsub.toUpperCase() + " ");
-                } else {
-                    result = result.concat(temp.substring(0, space) + " ");
-                }
+        String temp = "";
+        String[] arr = text.split(" ");
+        for(String i: arr){
+            if(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0){
+                temp = temp.concat(i.toUpperCase()).concat(" ");
             } else {
-                String tempsub = temp.toLowerCase();
-                if (tempsub.indexOf("пре") == 0 || tempsub.indexOf("при") == 0) {
-                    result = result.concat(tempsub.toUpperCase());
-                } else {
-                    result = result.concat(temp);
-                }
-                break;
+                temp = temp.concat(i).concat(" ");
             }
-            temp = temp.substring(space + 1);
         }
         System.out.println("Строка со словами на \"пре-\" и \"при-\", записанными прописными буквами: ");
-        System.out.println(result);
-        temp = null;
-        result = null;
+        System.out.println(temp);
     }
     public void numberRange(int min, int max){
         int count = 0;
-        temp = text;
-        temp = temp.replaceAll("\\D", " ");
-        String[] arr = temp.split(" ");
-        for(String i : arr){
-            if(i.equals("")){
-                continue;
-            }
-            System.out.println(i);
-            if(Integer.parseInt(i) >= min && Integer.parseInt(i) <= max){
-                count++;
+        String[] arr = text.split("\\s*?\\D*\\s");
+        for(String i: arr){
+            if(!i.equals("")) {
+                if (Integer.parseInt(i) >= min && Integer.parseInt(i) >= max) {
+                    count++;
+                }
             }
         }
         System.out.println("Количество чисел в данном диапазоне: ");
         System.out.println(count);
-        temp = null;
     }
 }
