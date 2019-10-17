@@ -1,13 +1,10 @@
 package com.company;
 import java.lang.StringBuffer;
-import java.lang.StringBuilder;
 import java.util.Scanner;
 
 
 public class Task2 {
     StringBuffer text = new StringBuffer();
-    StringBuffer temp = new StringBuffer();
-    StringBuffer result = new StringBuffer();
 
     Task2(){
         System.out.println("Введите текст: ");
@@ -16,6 +13,7 @@ public class Task2 {
     }
 
     public void removePrePri(){
+        StringBuffer temp = new StringBuffer();
         String[] arr = text.toString().split(" ");
         for(String i : arr){
             if(!(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0)){
@@ -27,6 +25,7 @@ public class Task2 {
     }
 
     public void divSeven() throws NumberFormatException{
+        StringBuffer temp = new StringBuffer();
         String[] arr = text.toString().split(" ");
         for(String i : arr){try{
 
@@ -42,7 +41,8 @@ public class Task2 {
         System.out.println("Текст с разделенными на 7 числами, не кратными 7: ");
         System.out.println(temp);
     }
-    public void addZeros(){
+    public void addZeros() throws NumberFormatException{
+        StringBuffer temp = new StringBuffer();
         String[] arr = text.toString().split(" ");
         for(String i : arr){try{
 

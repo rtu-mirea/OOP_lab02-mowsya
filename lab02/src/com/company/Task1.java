@@ -43,7 +43,7 @@ public class Task1 {
         String temp = "";
         String[] arr = text.split(" ");
         for(String i: arr){
-            if(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0){
+            if(i.substring(0,2).toLowerCase().equals("пре") || i.substring(0,2).toLowerCase().equals("при")){
                 temp = temp.concat(i.toUpperCase()).concat(" ");
             } else {
                 temp = temp.concat(i).concat(" ");
@@ -52,21 +52,20 @@ public class Task1 {
         System.out.println("Строка со словами на \"пре-\" и \"при-\", записанными прописными буквами: ");
         System.out.println(temp);
     }
-    public void numberRange(){
+    public void numberRange() throws NumberFormatException{
         Scanner in = new Scanner(System.in);
         System.out.println("Введите минимум: ");
         int min = in.nextInt();
         System.out.println("Введите максимум: ");
         int max = in.nextInt();
         int count = 0;
-        text = text.replaceAll("\\D"," ");
-        System.out.println(text);
         String[] arr = text.split(" ");
         for(String i: arr){
             if(!i.equals("")) {
+                try{
                 if (Integer.parseInt(i) >= min && Integer.parseInt(i) <= max) {
                     count++;
-                }
+                }}catch(NumberFormatException e){}
             }
         }
         System.out.println("Количество чисел в данном диапазоне: ");
