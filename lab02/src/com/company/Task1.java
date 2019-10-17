@@ -1,5 +1,4 @@
 package com.company;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.String;
 
@@ -43,9 +42,13 @@ public class Task1 {
         String temp = "";
         String[] arr = text.split(" ");
         for(String i: arr){
-            if(i.substring(0,2).toLowerCase().equals("пре") || i.substring(0,2).toLowerCase().equals("при")){
+            try{System.out.println(i);
+            if(i.substring(0,3).toLowerCase().equals("пре") || i.substring(0,3).toLowerCase().equals("при")){
+                System.out.println(i);
                 temp = temp.concat(i.toUpperCase()).concat(" ");
             } else {
+                temp = temp.concat(i).concat(" ");
+            }}catch(StringIndexOutOfBoundsException e){
                 temp = temp.concat(i).concat(" ");
             }
         }
@@ -61,12 +64,11 @@ public class Task1 {
         int count = 0;
         String[] arr = text.split(" ");
         for(String i: arr){
-            if(!i.equals("")) {
-                try{
-                if (Integer.parseInt(i) >= min && Integer.parseInt(i) <= max) {
+            try{
+                if(Integer.parseInt(i) >= min && Integer.parseInt(i) <= max){
                     count++;
-                }}catch(NumberFormatException e){}
-            }
+                }
+            } catch (NumberFormatException e){}
         }
         System.out.println("Количество чисел в данном диапазоне: ");
         System.out.println(count);

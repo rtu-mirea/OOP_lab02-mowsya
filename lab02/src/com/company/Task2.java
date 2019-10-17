@@ -12,16 +12,19 @@ public class Task2 {
         text.append(in.nextLine());
     }
 
-    public void removePrePri(){
+    public void removePrePri() throws StringIndexOutOfBoundsException{
         StringBuffer temp = new StringBuffer();
         String[] arr = text.toString().split(" ");
         for(String i : arr){
-            if(!(i.toLowerCase().indexOf("пре") == 0 || i.toLowerCase().indexOf("при") == 0)){
+            try{
+            if(!(i.substring(0,3).toLowerCase().equals("пре") || i.substring(0,3).toLowerCase().equals("при"))){
                 temp.append(i).append(" ");
-            }
+            }} catch(StringIndexOutOfBoundsException e){
+                temp.append(i).append(" ");
+                }
         }
         System.out.println("Текст без слов на \"пре-\" и \"при-\": ");
-        System.out.println(temp);
+        System.out.println(temp.toString());
     }
 
     public void divSeven() throws NumberFormatException{
@@ -39,21 +42,20 @@ public class Task2 {
         }
         }
         System.out.println("Текст с разделенными на 7 числами, не кратными 7: ");
-        System.out.println(temp);
+        System.out.println(temp.toString());
     }
-    public void addZeros() throws NumberFormatException{
+    public void addZeros(){
         StringBuffer temp = new StringBuffer();
         String[] arr = text.toString().split(" ");
-        for(String i : arr){try{
+        for(String i : arr){
 
-            if(Integer.parseInt(i) == Integer.parseInt(i)){
+            if(i.chars().allMatch(Character::isDigit)){
                 temp.append(i).append(" ");
+            }else{
+                temp.append("0000000").append(" ").append(i).append(" ");
             }
-        }catch(NumberFormatException e) {
-            temp.append("0000000").append(" ").append(i).append(" ");
-        }
         }
         System.out.println("Текст с добавленными к нечисловым словам семью нулями: ");
-        System.out.println(temp);
+        System.out.println(temp.toString());
     }
 }
